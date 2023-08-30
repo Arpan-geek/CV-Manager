@@ -59,6 +59,16 @@
       "position": "Mid",
       "salary": 234567,
       "id": 6
+    },
+    {
+      "fullName": "Khals Pokhara",
+      "email": "pokhara@gmail.com",
+      "contact": "9812121212",
+      "address": "pokhara",
+      "technology": "React",
+      "position": "Mid",
+      "salary": 200000,
+      "id": 7
     }
   ],
   "assesment": [
