@@ -1,19 +1,28 @@
 import { Box, Button, TextField } from "@mui/material";
 import { Formik } from "formik";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 import * as yup from "yup";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Header from "../../components/Header";
+import { useApplicantStore } from "../../store/applicantstore";
+
+
 
 const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
 
+  const createApplicant=useApplicantStore(state=>state.createApplicantAPI)
+
   const handleFormSubmit = (values) => {
-    console.log(values);
+  values={...values,technology:values.technology,position:values.position,salary:values.salary}
+  console.log("🚀 ~ file: index.jsx:16 ~ handleFormSubmit ~   values={...values,technology:values.technology,position:values.position,salary:values.salary}:",   values={...values,technology:values.technology,position:values.position,salary:values.salary})
+    createApplicant(values)
   };
 
   return (
     <Box m="20px">
-      <Header title="CREATE USER" subtitle="Create a New User Profile" />
+      <Header title="Create Applicant" subtitle="Create a New Candidate" />
 
       <Formik
         onSubmit={handleFormSubmit}
@@ -41,28 +50,16 @@ const Form = () => {
                 fullWidth
                 variant="filled"
                 type="text"
-                label="First Name"
+                label="Full Name"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.firstName}
-                name="firstName"
-                error={!!touched.firstName && !!errors.firstName}
-                helperText={touched.firstName && errors.firstName}
-                sx={{ gridColumn: "span 2" }}
+                value={values.fullName}
+                name="fullName"
+                error={!!touched.fullName && !!errors.fullName}
+                helperText={touched.fullName && errors.fullName}
+                sx={{ gridColumn: "span 4" }}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Last Name"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.lastName}
-                name="lastName"
-                error={!!touched.lastName && !!errors.lastName}
-                helperText={touched.lastName && errors.lastName}
-                sx={{ gridColumn: "span 2" }}
-              />
+              
               <TextField
                 fullWidth
                 variant="filled"
@@ -96,25 +93,60 @@ const Form = () => {
                 label="Address 1"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                value={values.address1}
-                name="address1"
-                error={!!touched.address1 && !!errors.address1}
-                helperText={touched.address1 && errors.address1}
+                value={values.address}
+                name="address"
+                error={!!touched.address && !!errors.address}
+                helperText={touched.addres1 && errors.address}
                 sx={{ gridColumn: "span 4" }}
               />
-              <TextField
-                fullWidth
-                variant="filled"
-                type="text"
-                label="Address 2"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                value={values.address2}
-                name="address2"
-                error={!!touched.address2 && !!errors.address2}
-                helperText={touched.address2 && errors.address2}
-                sx={{ gridColumn: "span 4" }}
-              />
+            
+                 <Select
+          labelId="Technology"
+          id="Technology"
+          type="text"
+          value={values.technology}
+          label="Technology"
+          onChange={handleChange}
+          name="technology"
+          error={!!touched.technology && !!errors.technology}
+          sx={{ gridColumn: "span 2"}}
+          // helperText={touched.technology && errors.technology}
+        >
+          
+            <MenuItem value={"React"}>React</MenuItem>
+            <MenuItem value={"Vue"}>Vue</MenuItem>
+            <MenuItem value={"Dot Net"}>Dot Net</MenuItem> 
+        </Select>
+        <Select
+          labelId="Position"
+          id="Position"
+          type="text"
+          value={values.position}
+          label="position"
+          onChange={handleChange}
+          name="position"
+          error={!!touched.position && !!errors.position}
+          sx={{ gridColumn: "span 2"}}
+          // helperText={touched.technology && errors.technology}
+        >
+          
+            <MenuItem value={"Junior"}>Junior</MenuItem>
+            <MenuItem value={"Mid"}>Mid</MenuItem>
+            <MenuItem value={"Senior"}>Senior</MenuItem> 
+        </Select>
+        <TextField
+          fullWidth
+          variant="filled"
+          type="number"  // Use type="number" for numeric input
+          label="Salary"
+          onBlur={handleBlur}
+          onChange={handleChange}
+          value={values.salary}
+          name="salary"
+          error={touched.salary && !!errors.salary}
+          helperText={touched.salary && errors.salary}
+          sx={{ gridColumn: "span 4" }}
+        />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
               <Button type="submit" color="secondary" variant="contained">
@@ -132,23 +164,25 @@ const phoneRegExp =
   /^((\+[1-9]{1,4}[ -]?)|(\([0-9]{2,3}\)[ -]?)|([0-9]{2,4})[ -]?)*?[0-9]{3,4}[ -]?[0-9]{3,4}$/;
 
 const checkoutSchema = yup.object().shape({
-  firstName: yup.string().required("required"),
-  lastName: yup.string().required("required"),
+  fullName: yup.string().required("required"),
   email: yup.string().email("invalid email").required("required"),
   contact: yup
     .string()
     .matches(phoneRegExp, "Phone number is not valid")
     .required("required"),
-  address1: yup.string().required("required"),
-  address2: yup.string().required("required"),
+  address: yup.string().required("required"),
+  technology: yup.string().required("required"),
+  position: yup.string().required("required"),
+  salary: yup.number().required("required"),
 });
 const initialValues = {
-  firstName: "",
-  lastName: "",
+  fullName: "",
   email: "",
   contact: "",
-  address1: "",
-  address2: "",
+  address: "",
+  technology: "",
+  position: "",
+  salary: "",
 };
 
 export default Form;

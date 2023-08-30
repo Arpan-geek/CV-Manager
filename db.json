@@ -1,0 +1,73 @@
+{
+  "applicants": [
+    {
+      "id": 1,
+      "address": "adad",
+      "contact": "98847848",
+      "email": "arpantimsina@edu.np",
+      "fullName": "jajaa moran",
+      "position": "Mid",
+      "salary": 30000,
+      "technology": "Vue"
+    },
+    {
+      "id": 2,
+      "address": "adadasadaadad",
+      "contact": "98847657848",
+      "email": "arasdmsina@edu.np",
+      "fullName": "jajaa adddddddmoran",
+      "position": "Mid",
+      "salary": 300000,
+      "technology": "React"
+    },
+    {
+      "fullName": "jajaa moran",
+      "email": "arpantimsina16@gmail.com",
+      "contact": "98847848",
+      "address": "adad",
+      "technology": "Vue",
+      "position": "Mid",
+      "salary": 20000,
+      "id": 3
+    },
+    {
+      "fullName": "jajaa moran",
+      "email": "arpantimsina16@gmail.com",
+      "contact": "98847848",
+      "address": "adad",
+      "technology": "Vue",
+      "position": "Mid",
+      "salary": 20000,
+      "id": 4
+    },
+    {
+      "fullName": "keto",
+      "email": "arpantimsina16@gmail.com",
+      "contact": "98847848",
+      "address": "adad",
+      "technology": "Vue",
+      "position": "Mid",
+      "salary": 20000,
+      "id": 5
+    },
+    {
+      "fullName": "SJHsdjabjd",
+      "email": "duhaid@gmail.com",
+      "contact": "9999999999999999999",
+      "address": "asdfgh",
+      "technology": "Vue",
+      "position": "Mid",
+      "salary": 234567,
+      "id": 6
+    }
+  ],
+  "assesment": [
+    {
+      "id": 1,
+      "body": "some comment"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
